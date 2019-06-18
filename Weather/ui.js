@@ -1,19 +1,16 @@
 class UI
 {
-    static setWeather(weatherPromise) {
+    static setWeather(weather) {
         // Weather promise is resolved
-        weatherPromise.then(function(weather){
-            console.log(weather);
-            // Get the weather information divs and change their text node to the weather info
-            document.getElementById('w-location').appendChild(document.createTextNode(`${weather.name}, ${weather.sys.country}`));
-            document.getElementById('w-desc').appendChild(document.createTextNode(weather.weather[0].description));
-            document.getElementById('w-icon').src = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`
-            // Set all of the list items to the response values
-            document.getElementById('w-humidity').appendChild(document.createTextNode('Humidity: ' + weather.main.humidity));
-            document.getElementById('w-pressure').appendChild(document.createTextNode('Pressure: ' + weather.main.pressure));
-            document.getElementById('w-description').appendChild(document.createTextNode('Description: ' + weather.weather[0].description));
-            document.getElementById('w-wind').appendChild(document.createTextNode(`Wind speed: ${weather.wind.speed}`));       
-        }).catch(err => console.log(err));
+        // Get the weather information divs and change their text node to the weather info
+        document.getElementById('w-location').innerText = `${weather.name}, ${weather.sys.country}`;
+        document.getElementById('w-desc').innerText = weather.weather[0].description;
+        document.getElementById('w-icon').src = `http://openweathermap.org/img/w/${weather.weather[0].icon}.png`
+        // Set all of the list items to the response values
+        document.getElementById('w-humidity').innerText = 'Humidity: ' + weather.main.humidity;
+        document.getElementById('w-pressure').innerText = 'Pressure: ' + weather.main.pressure;
+        document.getElementById('w-description').innerText = 'Description: ' + weather.weather[0].description;
+        document.getElementById('w-wind').innerText = `Wind speed: ${weather.wind.speed}`;
     }
 
     static displayError(errorMessage) {
